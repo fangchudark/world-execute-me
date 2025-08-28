@@ -1,0 +1,194 @@
+[gd_scene load_steps=16 format=3 uid="uid://dhkc4nbwn7mh3"]
+
+[ext_resource type="Script" uid="uid://3bhv8iot6vam" path="res://MouseAvoidText.cs" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://cejrfr5w0uqhr" path="res://Main.cs" id="1_h2yge"]
+[ext_resource type="PackedScene" uid="uid://dsju0adwgg8nf" path="res://simulation.tscn" id="2_1bvp3"]
+[ext_resource type="FontFile" uid="uid://dro0u8xlfka06" path="res://font/JetBrainsMono[wght].ttf" id="4_lquwl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0xm2m"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h2yge"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1bvp3"]
+
+[sub_resource type="Texture2DRD" id="Texture2DRD_0xm2m"]
+
+[sub_resource type="Texture2DRD" id="Texture2DRD_h2yge"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0xm2m"]
+bg_color = Color(0, 1, 0, 0.513726)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 1, 0, 1)
+border_blend = true
+corner_radius_top_left = 64
+corner_radius_top_right = 64
+corner_radius_bottom_right = 64
+corner_radius_bottom_left = 64
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lquwl"]
+
+[sub_resource type="Theme" id="Theme_lquwl"]
+OptionButton/styles/hover = SubResource("StyleBoxEmpty_0xm2m")
+OptionButton/styles/normal = SubResource("StyleBoxEmpty_h2yge")
+OptionButton/styles/pressed = SubResource("StyleBoxEmpty_1bvp3")
+PopupMenu/constants/v_separation = 12
+PopupMenu/icons/radio_checked = SubResource("Texture2DRD_0xm2m")
+PopupMenu/icons/radio_unchecked = SubResource("Texture2DRD_h2yge")
+PopupMenu/styles/hover = SubResource("StyleBoxFlat_0xm2m")
+PopupMenu/styles/panel = SubResource("StyleBoxEmpty_lquwl")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lquwl"]
+draw_center = false
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0.8, 0, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1bvp3"]
+draw_center = false
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 1, 0, 1)
+corner_radius_top_left = 48
+corner_radius_top_right = 48
+corner_radius_bottom_right = 48
+corner_radius_bottom_left = 48
+corner_detail = 12
+shadow_color = Color(0, 1, 0, 0.6)
+shadow_size = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h2yge"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+corner_radius_top_left = 48
+corner_radius_top_right = 48
+corner_radius_bottom_right = 48
+corner_radius_bottom_left = 48
+corner_detail = 12
+shadow_color = Color(0, 0.529412, 0, 1)
+shadow_size = 24
+
+[node name="Main" type="Control" node_paths=PackedStringArray("_startButton", "_styleOptionButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_h2yge")
+_entry = ExtResource("2_1bvp3")
+_startButton = NodePath("Button")
+_styleOptionButton = NodePath("HBoxContainer/OptionButton")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="MouseAvoidText" type="Control" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -390.0
+offset_top = 93.0
+offset_right = 393.0
+offset_bottom = 309.0
+grow_horizontal = 2
+script = ExtResource("1_0xm2m")
+Text = "world.exeucute(me);"
+Font = ExtResource("4_lquwl")
+FontSize = 64
+FontColor = Color(0, 1, 0, 1)
+AvoidRadius = 300.0
+MaxOffset = 50.0
+metadata/_custom_type_script = "uid://3bhv8iot6vam"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -15.0
+offset_right = 188.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MouseAvoidText2" type="Control" parent="HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("1_0xm2m")
+Text = "Select sytle:"
+Font = ExtResource("4_lquwl")
+FontSize = 24
+FontColor = Color(0, 1, 0, 1)
+AvoidRadius = 100.0
+MaxOffset = 10.0
+metadata/_custom_type_script = "uid://3bhv8iot6vam"
+
+[node name="OptionButton" type="OptionButton" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_lquwl")
+theme_override_fonts/font = ExtResource("4_lquwl")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxFlat_lquwl")
+flat = true
+selected = 0
+item_count = 3
+popup/item_0/text = "Console"
+popup/item_0/id = 0
+popup/item_1/text = "Code-C#"
+popup/item_1/id = 1
+popup/item_2/text = "Code-Java"
+popup/item_2/id = 2
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 418.0
+offset_top = 483.0
+offset_right = 766.0
+offset_bottom = 568.0
+theme_override_styles/focus = SubResource("StyleBoxFlat_1bvp3")
+theme_override_styles/hover = SubResource("StyleBoxFlat_h2yge")
+theme_override_styles/normal = SubResource("StyleBoxFlat_1bvp3")
+
+[node name="MouseAvoidText3" type="Control" parent="Button"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_0xm2m")
+Text = "Start Simulation"
+Font = ExtResource("4_lquwl")
+FontSize = 24
+FontColor = Color(0, 1, 0, 1)
+AvoidRadius = 100.0
+MaxOffset = 10.0
+metadata/_custom_type_script = "uid://3bhv8iot6vam"
+metadata/_edit_lock_ = true

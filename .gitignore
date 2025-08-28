@@ -1,0 +1,7 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+.vscode/
+
+world.execute(me);.wav
+world.execute(me);.wav.import
