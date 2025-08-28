@@ -23,7 +23,7 @@ public partial class MouseAvoidText : Control
         get => _font;
         set
         {
-            if (value == null)            
+            if (value == null)
                 _font = GetThemeFont("font");
             else
                 _font = value;
@@ -32,7 +32,7 @@ public partial class MouseAvoidText : Control
         }
     }
     Font _font;
-    
+
     [Export(PropertyHint.Range, "1,4096")]
     public int FontSize { get; set; } = 16;
     [Export] public Color FontColor { get; set; } = Colors.White;
@@ -74,6 +74,13 @@ public partial class MouseAvoidText : Control
         // 如果文本为空则直接返回
         if (string.IsNullOrEmpty(Text) || Font == null)
             return;
+
+        // 释放旧的 shaped buffer（如果存在且有效）
+        if (_shapedBuffer.IsValid)
+        {
+            _textServer.FreeRid(_shapedBuffer);
+        }
+
         // 创建文本缓冲区
         _shapedBuffer = _textServer.CreateShapedText();
 
@@ -136,7 +143,7 @@ public partial class MouseAvoidText : Control
         // 请求重绘
         QueueRedraw();
     }
-    
+
     // 计算文本位置，调整排版
     private void AlignGlyphPositions(Godot.Collections.Array<Godot.Collections.Dictionary> glyphs)
     {
@@ -265,7 +272,7 @@ public partial class MouseAvoidText : Control
             }
         }
     }
-    
+
     // 自定义绘制方法
     public override void _Draw()
     {
@@ -309,5 +316,15 @@ public partial class MouseAvoidText : Control
             }
             glyphPosIndex++;
         }
+    }
+    
+    public override void _ExitTree()
+    {
+        // 清理 shaped buffer 资源
+        if (_shapedBuffer.IsValid)
+        {
+            _textServer.FreeRid(_shapedBuffer);
+        }
+        base._ExitTree();
     }
 }

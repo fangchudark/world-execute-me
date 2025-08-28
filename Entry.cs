@@ -36,7 +36,7 @@ public partial class Entry : Control
         _vScrollBar = _label.GetVScrollBar();
         _vScrollBar.Draw += _vScrollBar.Hide;
 
-        if (FileAccess.FileExists("res://audio/world.execute(me);.wav"))
+        if (ResourceLoader.Exists("res://audio/world.execute(me);.wav"))
         {
             _audioStreamPlayer.Stream = ResourceLoader.Load<AudioStreamWav>("res://audio/world.execute(me);.wav");
         }
