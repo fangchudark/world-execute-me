@@ -51,14 +51,7 @@ public partial class Entry : Control
      
     public override void _Input(InputEvent @event)
     {
-        if (
-            (_simulation != null &&
-            !_simulation.IsRunning &&
-            @event is InputEventKey key &&
-            !key.IsEcho()) ||
-            (@event is InputEventKey esc &&
-            esc.Keycode == Key.Escape)
-        )
+        if (@event is InputEventKey esc && esc.Keycode == Key.Escape)
         {
             GetTree().ChangeSceneToFile("res://main.tscn");
             _simulation.Stop();            

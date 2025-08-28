@@ -334,7 +334,7 @@ public class GodPlaysCSharp
         world.RunExecution();
 
 ",
-                TimeSpan.FromMilliseconds(1000)
+                TimeSpan.FromMilliseconds(1200)
             ),
             new(
                 2, 42, 632 - offsetMills,
